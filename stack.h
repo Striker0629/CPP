@@ -4,42 +4,6 @@
 #include<algorithm>
 #include<iostream>
 
-template <typename T>
-struct StackIter
-{
-    explicit StackIter(T& obj)
-    {
-        value=&obj;
-    }
-    explicit StackIter(T* obj)
-    {
-        value=obj;
-    }
-    T *operator->()
-    {
-        return *value;
-    }
-    T operator*()
-    {
-        return value[0];
-    }
-    void operator++()
-    {
-        ++value;
-        //return *this;
-    }
-    friend bool operator==(const StackIter<T>lhs,const StackIter<T>rhs)
-    {
-        return lhs.value==rhs.value;
-    }
-    friend bool operator!=(const StackIter<T>lhs,const StackIter<T>rhs)
-    {
-        return !(lhs==rhs);
-    }
-
-private:
-    T* value;
-};
 
 
 template<typename T>
@@ -101,23 +65,13 @@ public:
     }
     Stack& operator=(const Stack& right)
     {
-        decltype(right) temp{right};
+        auto temp{right};
         Swap(*this,temp);
         
         return *this;
     }
 
-//    void Print()
-//    {
-////        StackIter<T>begin{data_};
-////        StackIter<T>end{data_+size_};
-////        while (begin!=end)
-////        {
-////             std::cout<<*begin<<std::endl;
-////             ++begin;
-////        }
-//        std::cout<<data_[0]<<std::endl;
-//    }
+
     inline friend void Swap(Stack& lhs,Stack&rhs)noexcept
     {
         using std::swap;
