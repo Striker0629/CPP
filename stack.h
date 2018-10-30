@@ -95,7 +95,8 @@ public:
                Reallocate();
         }
 
-        data_[size_++]=value;
+        data_[size_]=value;
+	++size_;
     }
     inline size_t Size()const
     {
